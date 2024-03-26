@@ -1,7 +1,9 @@
+import BodyLayout from "./components/Body/BodyLayout";
+
 function App() {
   return (
-    <div className="text-lg text-green-800 font-bold">
-      Let's Begin Netflix GPT using React and tailwind css
+    <div className="">
+      <BodyLayout />
     </div>
   );
 }
