@@ -1,6 +1,6 @@
 const HeaderView = () => {
     return (
-        <div className="h-20 w-full fixed bg-gradient-to-b from-black">
+        <div className="h-20 w-full fixed bg-gradient-to-b from-black z-10">
             <img 
                 className="h-20"
                 alt="logo"
