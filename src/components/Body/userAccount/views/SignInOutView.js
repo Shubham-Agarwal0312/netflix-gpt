@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import {checkValidDetails} from "../../../../utility/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../utility/firebaseSetup";
 
 const SignInOutView = () => {
 
@@ -17,6 +19,34 @@ const SignInOutView = () => {
         setErrorMessage(errorMsg);
         if (errorMsg !== null) 
             return;
+        if (!isSignIn) {
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+              // Signed up 
+              const user = userCredential.user;
+            //   console.log("user = ", user);
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setErrorMessage(errorCode + ' - ' + errorMessage);
+              // ..
+            });
+        } else {
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              console.log("user = ", user);
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setErrorMessage(errorCode + ' - ' + errorMessage);
+            });
+        }
     }
 
     return (
