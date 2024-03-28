@@ -1,15 +1,22 @@
 import { useRef, useState } from "react";
 import {checkValidDetails} from "../../../../utility/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../../utility/firebaseSetup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../../../utility/store/userSlice";
 
 const SignInOutView = () => {
 
     const [isSignIn, setIsSignIn] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
+
     const toggleSignInOut =() => {
         setIsSignIn(isSignIn => !isSignIn);
     }
@@ -24,7 +31,26 @@ const SignInOutView = () => {
             .then((userCredential) => {
               // Signed up 
               const user = userCredential.user;
-            //   console.log("user = ", user);
+              updateProfile(user, {
+                displayName: name.current.value, 
+                photoURL: "https://avatars.githubusercontent.com/u/65101716?v=4"
+              }).then(() => {
+                // Profile updated!
+                const {uid, email, displayName, photoURL} = auth.currentUser;
+                dispatch(addUser({
+                    uid: uid, 
+                    email: email, 
+                    displayName: displayName, 
+                    photoURL: photoURL
+                }));
+                navigate("/browser");
+              }).catch((error) => {
+                // An error occurred
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setErrorMessage(errorCode + ' - ' + errorMessage);
+              });
+              
               // ...
             })
             .catch((error) => {
@@ -39,6 +65,7 @@ const SignInOutView = () => {
               // Signed in 
               const user = userCredential.user;
               console.log("user = ", user);
+              navigate("/browser");
               // ...
             })
             .catch((error) => {
@@ -58,21 +85,22 @@ const SignInOutView = () => {
                 {isSignIn ? "Sign In" : "Sign Up"}
             </h1>
             {!isSignIn && 
-                <input 
-                    className="border border-white bg-black bg-opacity-65  p-6 my-4 h-12 rounded rounded-md"
+                <input
+                    ref={name}
+                    className="border border-white bg-black bg-opacity-65  p-6 my-4 h-12 rounded"
                     type="text" 
                     placeholder="Enter User Name" 
                 />
             }
             <input 
                 ref={email}
-                className="border border-white bg-black bg-opacity-65 p-6 my-4 h-12 rounded rounded-md"
+                className="border border-white bg-black bg-opacity-65 p-6 my-4 h-12 rounded"
                 type="text" 
                 placeholder="Email" 
             />
             <input 
                 ref={password}
-                className="border border-white bg-black bg-opacity-65 p-6 my-4 h-12 rounded rounded-md"
+                className="border border-white bg-black bg-opacity-65 p-6 my-4 h-12 rounded"
                 type="text" 
                 placeholder="Password" 
             />
@@ -81,7 +109,7 @@ const SignInOutView = () => {
             </p>
             <button
                 onClick={() => {handleBtnClick()}}
-                className="bg-red-600 my-4 h-12 rounded rounded-md"
+                className="bg-red-600 my-4 h-12 rounded"
             >
                 {isSignIn ? "Sign In" : "Sign Up"}
             </button>

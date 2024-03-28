@@ -1,7 +1,9 @@
+import HeaderView from "../views/HeaderView";
+
 const BrowserLayout = () => {
     return (
         <div>
-            BrowserLayout
+            <HeaderView />
         </div>
     );
 };
