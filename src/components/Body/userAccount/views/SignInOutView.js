@@ -2,15 +2,14 @@ import { useRef, useState } from "react";
 import {checkValidDetails} from "../../../../utility/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../../utility/firebaseSetup";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../../utility/store/userSlice";
+import { USER_AVATAR } from "../../../../utility/constant";
 
 const SignInOutView = () => {
 
     const [isSignIn, setIsSignIn] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const name = useRef(null);
@@ -32,8 +31,8 @@ const SignInOutView = () => {
               // Signed up 
               const user = userCredential.user;
               updateProfile(user, {
-                displayName: name.current.value, 
-                photoURL: "https://avatars.githubusercontent.com/u/65101716?v=4"
+                displayName: name.current.value,
+                photoURL: USER_AVATAR
               }).then(() => {
                 // Profile updated!
                 const {uid, email, displayName, photoURL} = auth.currentUser;
@@ -43,7 +42,6 @@ const SignInOutView = () => {
                     displayName: displayName, 
                     photoURL: photoURL
                 }));
-                navigate("/browser");
               }).catch((error) => {
                 // An error occurred
                 const errorCode = error.code;
@@ -64,8 +62,6 @@ const SignInOutView = () => {
             .then((userCredential) => {
               // Signed in 
               const user = userCredential.user;
-              console.log("user = ", user);
-              navigate("/browser");
               // ...
             })
             .catch((error) => {
@@ -101,7 +97,7 @@ const SignInOutView = () => {
             <input 
                 ref={password}
                 className="border border-white bg-black bg-opacity-65 p-6 my-4 h-12 rounded"
-                type="text" 
+                type="password" 
                 placeholder="Password" 
             />
             <p className=" text-red-600">
