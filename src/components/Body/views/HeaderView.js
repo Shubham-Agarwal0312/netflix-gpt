@@ -49,7 +49,7 @@ const HeaderView = () => {
     return (
         <div className="h-20 w-full fixed bg-gradient-to-b from-black z-10 flex justify-between">
             <img 
-                className="h-20"
+                className="h-16 pl-8"
                 alt="logo"
                 src={LOGO}
             />

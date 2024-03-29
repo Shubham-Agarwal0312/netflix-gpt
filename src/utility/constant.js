@@ -6,10 +6,12 @@ export const LOGO = "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897
 
 export const PLAY_BTN = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/YouTube_Diamond_Play_Button.png/1024px-YouTube_Diamond_Play_Button.png";
 
+export const POSTER_URL = "https://image.tmdb.org/t/p/w500/";
+
 export const API_OPTIONS = {
     method: 'GET',
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjc1OTUzNjcxYjdiN2E3ZDhiMmJjOTViY2JkMzA4NyIsInN1YiI6IjY1MzJhODIxNmY4ZDk1MDEyY2QxMTZlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Mcsr94sOqOsSsLMqk-P_r0m0QAzb3EbZV_m6DwLyV88'
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjc1OTUzNjcxYjdiN2E3ZDhiMmJjOTViY2JkMzA4NyIsInN1YiI6IjY1MzJhODIxNmY4ZDk1MDEyY2QxMTZlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Mcsr94sOqOsSsLMqk-P_r0m0QAzb3EbZV_m6DwLyV88'
     }
-  };
+};
