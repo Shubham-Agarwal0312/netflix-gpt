@@ -10,7 +10,7 @@ const UserAccountLayout = () => {
                 className="absolute h-full w-full"
                 src={BACKGROUND_IMAGE}
                 alt="background-image"
-                />
+            />
             <SignInOutView />
         </div>
     );
