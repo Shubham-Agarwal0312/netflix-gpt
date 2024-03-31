@@ -12,7 +12,8 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjc1OTUzNjcxYjdiN2E3ZDhiMmJjOTViY2JkMzA4NyIsInN1YiI6IjY1MzJhODIxNmY4ZDk1MDEyY2QxMTZlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Mcsr94sOqOsSsLMqk-P_r0m0QAzb3EbZV_m6DwLyV88'
+        Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_KEY,
+        // Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjc1OTUzNjcxYjdiN2E3ZDhiMmJjOTViY2JkMzA4NyIsInN1YiI6IjY1MzJhODIxNmY4ZDk1MDEyY2QxMTZlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Mcsr94sOqOsSsLMqk-P_r0m0QAzb3EbZV_m6DwLyV88'
     }
 };
 

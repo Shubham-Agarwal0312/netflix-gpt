@@ -8,7 +8,8 @@ const MainContainerLayout = () => {
   const movies = useSelector(store => store.movies?.nowPlayingMovies);
   if (!movies) return;
 
-  const mainMovie = movies[1];
+  const randomNum = Math.floor(Math.random() * (movies.length));
+  const mainMovie = movies[randomNum];
   const {original_title, overview, id} = mainMovie;
 
   return (
