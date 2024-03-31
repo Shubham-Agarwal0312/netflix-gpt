@@ -5,11 +5,15 @@ import HeaderView from "../views/HeaderView";
 import GptSearchLayout from "./gptSearchContainer/GptSearchLayout";
 import MainContainerLayout from "./mainContainer/MainContainerLayout";
 import SecondaryContainerLayout from "./secondaryContainer/SecondaryContainerLayout";
+import useTopRatedMovies from "../../../hooks/useTopRatedMovies";
+import useUpcomingMovies from "../../../hooks/useUpcomingMovies";
 
 const BrowserLayout = () => {
 
     useNowPlayingMovies();
     usePopularMovies();
+    useTopRatedMovies();
+    useUpcomingMovies();
     const gptSearch = useSelector(store => store.gpt?.gptSearchPageView);
 
     return (

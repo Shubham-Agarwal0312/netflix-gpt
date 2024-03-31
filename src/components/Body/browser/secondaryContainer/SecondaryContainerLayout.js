@@ -11,8 +11,8 @@ const SecondaryContainerLayout = () => {
                 <div className='-mt-[220px] relative z-10'>
                     <MovieListView movieType="Now Playing Movies" movies={movies?.nowPlayingMovies} />
                     <MovieListView movieType="Popular Movies" movies={movies?.popularMovies} />
-                    <MovieListView movieType="Top Rated Movies" movies={movies?.nowPlayingMovies} />
-                    <MovieListView movieType="Upcoming Movies" movies={movies?.nowPlayingMovies} />
+                    <MovieListView movieType="Top Rated Movies" movies={movies?.topRatedMovies} />
+                    <MovieListView movieType="Upcoming Movies" movies={movies?.upcomingMovies} />
                 </div>
                 
             }
