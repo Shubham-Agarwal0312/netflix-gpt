@@ -1,3 +1,11 @@
 #hide-scroll::-webkit-scrollbar {
     display: none;
 }
+
+#movieListView_exploreAll {
+    display: none;
+}
+
+#movieListView_movieType:hover + #movieListView_exploreAll {
+    display: inline-block;
+}

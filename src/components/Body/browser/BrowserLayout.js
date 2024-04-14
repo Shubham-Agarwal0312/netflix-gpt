@@ -7,6 +7,8 @@ import MainContainerLayout from "./mainContainer/MainContainerLayout";
 import SecondaryContainerLayout from "./secondaryContainer/SecondaryContainerLayout";
 import useTopRatedMovies from "../../../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../../../hooks/useUpcomingMovies";
+import PopupContainerLayout from "./popupContainer/PopupContainerLayout";
+import TrailerPopupLayout from "./popupContainer/TrailerPopupLayout";
 
 const BrowserLayout = () => {
 
@@ -15,10 +17,19 @@ const BrowserLayout = () => {
     useTopRatedMovies();
     useUpcomingMovies();
     const gptSearch = useSelector(store => store.gpt?.gptSearchPageView);
+    const isPopupOpen = useSelector(store => store.movies?.isPopup);
+    const isTrailerPopup = useSelector(store => store.movies?.isTrailerPopup);
 
     return (
         <div>
             <HeaderView />
+            {
+                isPopupOpen && <PopupContainerLayout />
+            }
+            {
+                (!isPopupOpen && isTrailerPopup) && <TrailerPopupLayout /> 
+            }
+            <div className={`${(isPopupOpen || isTrailerPopup) && "fixed"}`}>
             {
                 gptSearch 
                 ?   <GptSearchLayout /> 
@@ -27,7 +38,7 @@ const BrowserLayout = () => {
                     <SecondaryContainerLayout />
                 </>
             }
-            
+            </div>
             
         </div>
     );
